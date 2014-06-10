@@ -4,3 +4,7 @@ create table employees (
     last_name VARCHAR(50) NOT NULL,
     age SMALLINT
 );
+
+insert into employees (first_name, last_name, age) values ('Yakov','Treiber',20);
+insert into employees (first_name, last_name, age) values ('Sarah','Smith',37);
+insert into employees (first_name, last_name, age) values ('Marta','Jeferson',24);
