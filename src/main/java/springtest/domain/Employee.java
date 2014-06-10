@@ -2,6 +2,13 @@ package springtest.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="employees")
 public class Employee implements Serializable {
     
     /**
@@ -9,9 +16,17 @@ public class Employee implements Serializable {
      */
     private static final long serialVersionUID = -5273694232587391237L;
     
+    @Id
+    @Column(name="employee_id")
     private Long employeeId;
+    
+    @Column(name="first_name")
     private String firstName;
+    
+    @Column(name="last_name")
     private String lastName;
+    
+    @Column(name="age")
     private Short age;
     
     @Override

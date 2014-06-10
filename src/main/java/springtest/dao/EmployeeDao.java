@@ -2,14 +2,22 @@ package springtest.dao;
 
 import java.util.List;
 
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
 import springtest.domain.Employee;
 
+@Repository
 public class EmployeeDao implements IEmployeeDao {
+    
+    @Autowired
+    private SessionFactory sessionFactory;
 
-	@Override
+	@SuppressWarnings("unchecked")
+    @Override
 	public List<Employee> getEmployees() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.sessionFactory.getCurrentSession().createQuery("from Employee").list();
 	}
 
 	@Override
@@ -20,20 +28,27 @@ public class EmployeeDao implements IEmployeeDao {
 
 	@Override
 	public Employee addEmployee(Employee employeeToAdd) {
-		// TODO Auto-generated method stub
-		return null;
+		return (Employee) this.sessionFactory.getCurrentSession().save(employeeToAdd);
 	}
 
 	@Override
 	public boolean updateEmployee(Employee employeeToUpdate) {
-		// TODO Auto-generated method stub
-		return false;
+		try {
+		    this.sessionFactory.getCurrentSession().update(employeeToUpdate);
+		    return true;
+		} catch (Exception e) {
+		    return false;
+		}
 	}
 
 	@Override
 	public boolean deleteEmployee(Employee employeeToDelete) {
-		// TODO Auto-generated method stub
-		return false;
+	    try {
+            this.sessionFactory.getCurrentSession().delete(employeeToDelete);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
 	}
 
 }
