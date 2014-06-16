@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import springtest.dao.EmployeeDao;
 import springtest.domain.Employee;
 import springtest.services.EmployeeService;
 
