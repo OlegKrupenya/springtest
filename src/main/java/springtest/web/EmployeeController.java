@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -24,12 +26,24 @@ public class EmployeeController {
         model.addAttribute("name", name);
         return "helloworld";
     }
+    
 
     @RequestMapping("/getAll")
     public String getAllEmployees(
     Model model) {
         List<Employee> employees = this.employeeService.getEmployees();
+        if (!model.containsAttribute("employee")) {
+            model.addAttribute("employee", new Employee());
+        }
         model.addAttribute("employees", employees);
+        return "employeesList";
+    }
+    
+    @RequestMapping("/add")
+    public String addEmployee(@ModelAttribute("employee") Employee employee, BindingResult result,
+    Model model) {
+        employee = this.employeeService.addEmployee(employee);
+        model.addAttribute("employee", employee);
         return "employeesList";
     }
 

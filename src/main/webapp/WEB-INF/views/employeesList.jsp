@@ -8,6 +8,11 @@
 <title>Employees:</title>
 </head>
 <body>
+	<script type="text/javascript">
+		function addOnClick() {
+			window.location = "./addNewEmployee.jsp";
+		}
+	</script>
 	<c:if test="${!empty employees}">
 		<table class="data">
 			<tr>
@@ -28,7 +33,7 @@
 		</table>
 	</c:if>
 	<div>
-		<button id="btnAdd">Add</button>
+		<button id="btnAdd" onclick="addOnClick()">Add</button>
 		<button id="btnEdit">Edit</button>
 		<button id="btnDelete">Delete</button>
 	</div>
