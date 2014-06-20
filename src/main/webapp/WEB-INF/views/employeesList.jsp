@@ -10,7 +10,7 @@
 <body>
 	<script type="text/javascript">
 		function addOnClick() {
-			window.location = "./addNewEmployee.jsp";
+			window.location = "add";
 		}
 	</script>
 	<c:if test="${!empty employees}">

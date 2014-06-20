@@ -28,7 +28,9 @@ public class EmployeeDao implements IEmployeeDao {
 
 	@Override
 	public Employee addEmployee(Employee employeeToAdd) {
-		return (Employee) this.sessionFactory.getCurrentSession().save(employeeToAdd);
+	    Long employeeId = (Long) this.sessionFactory.getCurrentSession().save(employeeToAdd);
+	    employeeToAdd.setEmployeeId(employeeId);
+		return employeeToAdd;
 	}
 
 	@Override
