@@ -43,7 +43,7 @@ public class EmployeeController {
     Model model) {
         this.employeeService.addEmployee(employee);
         model.addAttribute("employee", employee);
-        return "forward:/employeesList";
+        return "forward:/getAll";
     }
     
     @RequestMapping("/add")
