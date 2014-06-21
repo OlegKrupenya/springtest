@@ -35,23 +35,27 @@
 
 		}
 		function editOnClick() {
-
+            window.location = "edit" + extractId();
 		}
 		function deleteOnClick() {
+            window.location = "delete" + extractId();
+		}
+		
+		function extractId() {
 			var elements = document.getElementsByName('cbSelected');
-			var id = "";
-			var index;
+            var id = "";
+            var index;
             for (index = 0; index < elements.length; index++) {
                 if (elements[index].checked) {
                     var selectedId = elements[index].id.substr(2);
                     if (id == "") {
-                    	id = "?id=" + selectedId;
+                        id = "?id=" + selectedId;
                     } else {
-                    	id += "&id=" + selectedId;
+                        id += "&id=" + selectedId;
                     }
                 }
             }
-            window.location = "delete" + id;
+            return id;
 		}
 	</script>
 	<c:if test="${!empty employees}">

@@ -24,7 +24,6 @@ public class EmployeeController {
     public String addEmployee(@ModelAttribute("employee") Employee employee, BindingResult result,
     Model model) {
         this.employeeService.addEmployee(employee);
-        model.addAttribute("employee", employee);
         return "redirect:/getAll";
     }
     
@@ -33,6 +32,22 @@ public class EmployeeController {
     Model model) {
         model.addAttribute("employee", new Employee());
         return "addNewEmployee";
+    }
+    
+    @RequestMapping("/editEmployee")
+    public String editEmployee(@ModelAttribute("employee") Employee employee, BindingResult result,
+    Model model) {
+        this.employeeService.updateEmployee(employee);
+        return "redirect:/getAll";
+    }
+    
+    @RequestMapping("/edit")
+    public String editEmployeeFromInit(@RequestParam(value = "id", required = true) String[] id, 
+    Model model) {
+        Long employeeId = Long.parseLong(id[0]);
+        Employee employee = this.employeeService.getEmployeeById(employeeId);
+        model.addAttribute("employee", employee);
+        return "editEmployee";
     }
     
     @RequestMapping("/delete")
