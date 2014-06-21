@@ -22,8 +22,7 @@ public class EmployeeDao implements IEmployeeDao {
 
 	@Override
 	public Employee getEmployeeById(Long employeeId) {
-		// TODO Auto-generated method stub
-		return null;
+		return (Employee) this.sessionFactory.getCurrentSession().get(Employee.class, employeeId);
 	}
 
 	@Override

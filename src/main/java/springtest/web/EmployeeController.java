@@ -20,24 +20,6 @@ public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
 
-    @RequestMapping("/hello")
-    public String hello(
-            @RequestParam(value = "name", required = false, defaultValue = "World") String name,
-            Model model) {
-        model.addAttribute("name", name);
-        return "helloworld";
-    }
-    
-
-    @RequestMapping("/getAll")
-    public String getAllEmployees(
-            ModelMap model) {
-        List<Employee> employees = this.employeeService.getEmployees();
-        model.addAttribute("employee", new Employee());
-        model.addAttribute("employees", employees);
-        return "employeesList";
-    }
-    
     @RequestMapping("/addEmployee")
     public String addEmployee(@ModelAttribute("employee") Employee employee, BindingResult result,
     Model model) {
@@ -51,6 +33,25 @@ public class EmployeeController {
     Model model) {
         model.addAttribute("employee", new Employee());
         return "addNewEmployee";
+    }
+    
+    @RequestMapping("/delete")
+    public String deleteEmployees(@RequestParam(value = "id", required = true) String[] id) {
+        for (String s : id) {
+            Long employeeId = Long.parseLong(s);
+            Employee employee = this.employeeService.getEmployeeById(employeeId);
+            this.employeeService.deleteEmployee(employee);
+        }
+        return "redirect:/getAll";
+    }
+    
+    @RequestMapping("/getAll")
+    public String getAllEmployees(
+            ModelMap model) {
+        List<Employee> employees = this.employeeService.getEmployees();
+        model.addAttribute("employee", new Employee());
+        model.addAttribute("employees", employees);
+        return "employeesList";
     }
 
     public EmployeeService getEmployeeService() {
