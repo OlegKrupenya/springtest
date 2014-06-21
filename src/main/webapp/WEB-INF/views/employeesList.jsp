@@ -12,6 +12,34 @@
 		function addOnClick() {
 			window.location = "add";
 		}
+		function cbOnChange() {
+			var elements = document.getElementsByName('cbSelected');
+			var selectedCount = 0;
+			var index;
+			for (index = 0; index < elements.length; index++) {
+				if (elements[index].checked) {
+					selectedCount++;
+				}
+			}
+			if (selectedCount > 0) {
+				document.getElementById('btnDelete').disabled = false;
+			} else {
+				document.getElementById('btnDelete').disabled = true;
+				document.getElementById('btnEdit').disabled = true;
+			}
+			if (selectedCount == 1) {
+				document.getElementById('btnEdit').disabled = false;
+			} else {
+				document.getElementById('btnEdit').disabled = true;
+			}
+
+		}
+		function editOnClick() {
+
+		}
+		function deleteOnClick() {
+
+		}
 	</script>
 	<c:if test="${!empty employees}">
 		<table class="data">
@@ -27,15 +55,16 @@
 					<td>${emp.firstName}</td>
 					<td>${emp.lastName}</td>
 					<td>${emp.age}</td>
-					<td><input type="checkbox" name="cbSelected"  id="cb${emp.employeeId}" /></td>
+					<td><input type="checkbox" name="cbSelected"
+						id="cb${emp.employeeId}" onchange="cbOnChange()" /></td>
 				</tr>
 			</c:forEach>
 		</table>
 	</c:if>
 	<div>
-		<button id="btnAdd" onclick="addOnClick()">Add</button>
-		<button id="btnEdit">Edit</button>
-		<button id="btnDelete">Delete</button>
+		<button id="btnAdd" id="btnAdd" onclick="addOnClick()">Add</button>
+		<button id="btnEdit" id="btnEdit" onclick="editOnClick()" disabled="disabled">Edit</button>
+		<button id="btnDelete" id="btnDelete" onclick="deleteOnClick()" disabled="disabled">Delete</button>
 	</div>
 </body>
 </html>
