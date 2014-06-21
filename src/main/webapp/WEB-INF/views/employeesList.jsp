@@ -27,7 +27,7 @@
 					<td>${emp.firstName}</td>
 					<td>${emp.lastName}</td>
 					<td>${emp.age}</td>
-					<td><input type="checkbox" name="cbSelected" /></td>
+					<td><input type="checkbox" name="cbSelected"  id="cb${emp.employeeId}" /></td>
 				</tr>
 			</c:forEach>
 		</table>
