@@ -64,6 +64,11 @@ public class EmployeeController {
     public String getAllEmployees(
             ModelMap model) {
         List<Employee> employees = this.employeeService.getEmployees();
+        for (Employee emp : employees) {
+            if (emp.getCars() != null) {
+                System.out.println(emp.getCars().size());
+            }
+        }
         model.addAttribute("employee", new Employee());
         model.addAttribute("employees", employees);
         return "employeesList";

@@ -65,6 +65,7 @@
 				<th>First Name</th>
 				<th>Last Name</th>
 				<th>Age</th>
+				<th>Cars</th>
 			</tr>
 			<c:forEach items="${employees}" var="emp">
 				<tr>
@@ -72,6 +73,7 @@
 					<td>${emp.firstName}</td>
 					<td>${emp.lastName}</td>
 					<td>${emp.age}</td>
+					<td><c:if test="true"><a href="cars">Cars</a></c:if></td>
 					<td><input type="checkbox" name="cbSelected"
 						id="cb${emp.employeeId}" onchange="cbOnChange()" /></td>
 				</tr>
