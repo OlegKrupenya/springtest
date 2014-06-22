@@ -8,5 +8,6 @@
     <session-factory>
         <mapping class="springtest.domain.Employee"></mapping>
         <mapping class="springtest.domain.Car"></mapping>
+        <mapping class="springtest.domain.Company"></mapping>
     </session-factory>
 </hibernate-configuration>

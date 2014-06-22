@@ -9,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -19,7 +20,7 @@ public class Employee implements Serializable {
     /**
      * 
      */
-    private static final long serialVersionUID = 3891233022773119495L;
+    private static final long serialVersionUID = -4324292020052214809L;
 
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Id
@@ -37,6 +38,9 @@ public class Employee implements Serializable {
     
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "employee")  
     private Set<Car> cars; 
+    
+    @ManyToMany(mappedBy = "employees")
+    private Set<Company> companies;
     
     public Employee() {}
     
@@ -87,6 +91,15 @@ public class Employee implements Serializable {
         return true;
     }
 
+
+    public Set<Company> getCompanies() {
+        return companies;
+    }
+
+
+    public void setCompanies(Set<Company> companies) {
+        this.companies = companies;
+    }
 
 
     public Long getEmployeeId() {
