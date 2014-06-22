@@ -34,7 +34,7 @@ public class Employee implements Serializable {
     @Column(name="age")
     private Short age;
     
-    @OneToMany(mappedBy = "employees")  
+    @OneToMany(mappedBy = "employee")  
     private Set<Car> cars; 
     
     public Employee() {}
