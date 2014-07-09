@@ -23,7 +23,7 @@ public class EmployeeService {
 	public Employee getEmployeeById(Long employeeId) {
 		return this.employeeDao.getEmployeeById(employeeId);
 	}
-    @Transactional
+    @Transactional(rollbackFor = NullPointerException.class)
 	public Employee addEmployee(Employee employeeToAdd) {
 		return this.employeeDao.addEmployee(employeeToAdd);
 	}
